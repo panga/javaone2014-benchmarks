@@ -2,7 +2,7 @@ Node.js vs vert.x
 =================
 
 Simple and naive Node.js vs vert.x benchmark
-Node.js server uses Restify framework and Mongoose ORM. Vert.x uses mongo-persistor module. The database is MongoDB.
+Node.js server uses Restify framework and Mongoose ORM. Vert.x uses mongo-persistor module (Java). The database is MongoDB.
 
 Testing environment
 -------------------
