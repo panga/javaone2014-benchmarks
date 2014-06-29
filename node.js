@@ -1,6 +1,4 @@
 // MongoDB connection
-
-var mongoose = require('mongoose');
 var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost:27017/nodejs', function() {
 
@@ -50,7 +48,7 @@ server.get('/post', function(req, res) {
       res.send(500);
     } else {
 
-      PostModel.find().limit(100).execFind(function(err, data) {
+      PostModel.find().limit(100).exec(function(err, data) {
 
         if (err) {
           res.send(500);
