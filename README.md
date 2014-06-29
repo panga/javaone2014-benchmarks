@@ -1,8 +1,10 @@
 Node.js vs vert.x
 =================
 
-Simple and naive Node.js vs vert.x benchmark
-Node.js server uses Restify framework and Mongoose ORM. Vert.x uses mongo-persistor module (Java). The database is MongoDB.
+Simple and naive Node.js vs vert.x benchmark  
+Node.js server uses Restify framework and Mongoose ORM  
+Vert.x uses mongo-persistor module (Java)  
+The database is MongoDB  
 
 Testing environment
 -------------------
@@ -85,11 +87,28 @@ Failed transactions:               0
 Longest transaction:            0.96
 Shortest transaction:           0.00
 Memory consumed:                ~530 MB
+
+[1.4] Vertx (Java 8)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  63.43 secs
+Data transferred:             266.82 MB
+Response time:                  0.01 secs
+Transaction rate:             157.65 trans/sec
+Throughput:                     4.21 MB/sec
+Concurrency:                    1.33
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.49
+Shortest transaction:           0.00
+Memory consumed:                ~200 MB
+
 ```
 
 * 1.x tests reached local MongoDB instance limits
 
-### Returning 'hello world' response
+### Returning a simple JSON response
 
 Short JSON was returned in response to every request, no calculations performed.
 
@@ -143,6 +162,22 @@ Failed transactions:            1122
 Longest transaction:            0.81
 Shortest transaction:           0.02
 Memory consumed:                 ~90 MB
+
+[2.4] Vertx (Java 8)
+
+Transactions:                  28131 hits
+Availability:                  96.16 %
+Elapsed time:                   9.77 secs
+Data transferred:               0.51 MB
+Response time:                  0.03 secs
+Transaction rate:            2879.32 trans/sec
+Throughput:                     0.05 MB/sec
+Concurrency:                   94.38
+Successful transactions:       28131
+Failed transactions:            1123
+Longest transaction:            0.74
+Shortest transaction:           0.01
+Memory consumed:                 ~90 MB
 ```
 
 * 2.x tests were aborted due to excessive socket failure
@@ -190,33 +225,33 @@ Memory consumed:                ~550 MB
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
-Elapsed time:                  14.63 secs
+Elapsed time:                  14.25 secs
 Data transferred:              95.49 MB
-Response time:                  0.15 secs
-Transaction rate:             683.53 trans/sec
-Throughput:                     6.53 MB/sec
-Concurrency:                   99.51
+Response time:                  0.14 secs
+Transaction rate:             701.75 trans/sec
+Throughput:                     6.70 MB/sec
+Concurrency:                   99.56
 Successful transactions:       10000
 Failed transactions:               0
-Longest transaction:            0.82
+Longest transaction:            0.92
 Shortest transaction:           0.10
 Memory consumed:                ~350 MB
 
-[3.4] Vertx 4 instances (Nashorn)
+[3.4] Vertx (Java 8)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
-Elapsed time:                  13.23 secs
+Elapsed time:                   9.56 secs
 Data transferred:              95.49 MB
-Response time:                  0.13 secs
-Transaction rate:             755.86 trans/sec
-Throughput:                     7.22 MB/sec
-Concurrency:                   96.32
+Response time:                  0.10 secs
+Transaction rate:            1046.03 trans/sec
+Throughput:                     9.99 MB/sec
+Concurrency:                   99.49
 Successful transactions:       10000
 Failed transactions:               0
-Longest transaction:            1.94
-Shortest transaction:           0.00
-Memory consumed:                ~360 MB
+Longest transaction:            0.31
+Shortest transaction:           0.07
+Memory consumed:                ~180 MB
 ```
 
 ### Fibonacci
@@ -274,7 +309,23 @@ Longest transaction:            4.19
 Shortest transaction:           0.50
 Memory consumed:                ~640 MB
 
-[4.4] Vertx 4 instances (Nashorn)
+[4.4] Vertx (Java 8)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                   4.69 secs
+Data transferred:               0.02 MB
+Response time:                  0.45 secs
+Transaction rate:             213.22 trans/sec
+Throughput:                     0.01 MB/sec
+Concurrency:                   95.03
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            0.50
+Shortest transaction:           0.02
+Memory consumed:                ~25 MB
+
+[4.5] Vertx 4 instances (Nashorn)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -289,6 +340,22 @@ Failed transactions:               0
 Longest transaction:            3.13
 Shortest transaction:           0.16
 Memory consumed:                ~660 MB
+
+[4.6] Vertx 4 instances (Java 8)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                   2.25 secs
+Data transferred:               0.02 MB
+Response time:                  0.21 secs
+Transaction rate:             444.44 trans/sec
+Throughput:                     0.01 MB/sec
+Concurrency:                   94.52
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            0.42
+Shortest transaction:           0.04
+Memory consumed:                ~80 MB
 ```
 
 Fun facts
