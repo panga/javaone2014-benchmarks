@@ -433,10 +433,6 @@ Benchmarking command: **siege -c100 -b -r10 http://localhost:1337/fibonacci**
   </tr>
 </table>
 
-### Webpage render
-
-[ETA: end of June]
-
 Conclusions
 -----------
 
@@ -450,4 +446,5 @@ Fun facts
 ---------
 
 * Naming your vert.x application file 'vertx.js' is a bad idea.
+* Naming your node.js application file 'node.js' on Windows is a bad idea.
 * Vert.x crashed with 'java.lang.OutOfMemoryError: GC overhead limit exceeded' exception because of the MongoDB socket timeouts.

@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "mongoose": "~3.8.12",
-    "restify": "^2.8.1"
+    "restify": "^2.8.1",
+    "node-uuid": "~1.4.1"
   },
   "engines": {
     "node": ">=0.10.0"
