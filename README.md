@@ -251,7 +251,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.31
 Shortest transaction:           0.07
-Memory consumed:                ~255 MB
+Total memory:                   ~255 MB
 ```
 
 ### Fibonacci
@@ -323,7 +323,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.50
 Shortest transaction:           0.02
-Memory consumed:                ~100 MB
+Total memory:                   ~100 MB
 
 [4.5] Vertx 4 instances (Nashorn)
 
@@ -339,7 +339,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            3.13
 Shortest transaction:           0.16
-Memory consumed:                ~810 MB
+Total memory:                   ~810 MB
 
 [4.6] Vertx 4 instances (Java 8)
 
@@ -355,7 +355,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.42
 Shortest transaction:           0.04
-Memory consumed:                ~180 MB
+Total memory:                   ~180 MB
 ```
 
 Fun facts
