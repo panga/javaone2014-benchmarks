@@ -9,8 +9,6 @@ Testing environment
 
 * Hardware: Amazon EC2 c3.xlarge Instance (4 CPU, 7.5GB RAM, 80GB SSD)
 * Operating System: Red Hat Enterprise Linux 6.5 (PV) 64-bit
-* No network
-
 * Node.js v0.10.29 (2014-06-16)
 * vert.x 2.1.1 (2014-06-18)
 * JDK 8u5
@@ -39,7 +37,7 @@ and gets 100 already stored documents in response (no sorting).
 
 Benchmarking command: **siege -c100 -d1 -r100 http://localhost:1337/post**
 
-`
+```
 [1.1] Node.js
 
 Transactions:                  10000 hits
@@ -87,9 +85,9 @@ Failed transactions:               0
 Longest transaction:            0.96
 Shortest transaction:           0.00
 Memory consumed:                ~530 MB
+```
 
 * 1.x tests reached local MongoDB instance limits
-`
 
 ### Returning 'hello world' response
 
@@ -97,7 +95,7 @@ Short JSON was returned in response to every request, no calculations performed.
 
 Benchmarking command: **siege -c100 -b -r1000 http://localhost:1337/hello**
 
-`
+```
 [2.1] Node.js
 
 Transactions:                  28233 hits
@@ -145,7 +143,7 @@ Failed transactions:            1122
 Longest transaction:            0.81
 Shortest transaction:           0.02
 Memory consumed:                 ~90 MB
-`
+```
 
 * 2.x tests were aborted due to excessive socket failure
 
@@ -155,7 +153,7 @@ Random 10000 characters long strings were returned to this requests. No buffers 
 
 Benchmarking command: **siege -c100 -b -r100 http://localhost:1337/concat**
 
-`
+```
 [3.1] Node.js
 
 Transactions:                  10000 hits
@@ -219,7 +217,7 @@ Failed transactions:               0
 Longest transaction:            1.94
 Shortest transaction:           0.00
 Memory consumed:                ~360 MB
-`
+```
 
 ### Fibonacci
 
@@ -227,7 +225,7 @@ The most famous benchmark out there. Calculating **fib(30)** recursively.
 
 Benchmarking command: **siege -c100 -b -r10 http://localhost:1337/fibonacci**
 
-`
+```
 [4.1] Node.js
 
 Transactions:                   1000 hits
@@ -291,7 +289,7 @@ Failed transactions:               0
 Longest transaction:            3.13
 Shortest transaction:           0.16
 Memory consumed:                ~660 MB
-`
+```
 
 Fun facts
 ---------
