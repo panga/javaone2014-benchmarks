@@ -54,7 +54,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.41
 Shortest transaction:           0.00
-Memory consumed:                 ~50 MB
+Total memory:                    ~75 MB
 
 [1.2] Vertx (Rhino)
 
@@ -70,7 +70,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.77
 Shortest transaction:           0.00
-Memory consumed:                ~500 MB
+Total memory:                   ~580 MB
 
 [1.3] Vertx (Nashorn)
 
@@ -86,7 +86,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.96
 Shortest transaction:           0.00
-Memory consumed:                ~530 MB
+Total memory:                   ~620 MB
 
 [1.4] Vertx (Java 8)
 
@@ -102,7 +102,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.49
 Shortest transaction:           0.00
-Memory consumed:                ~200 MB
+Total memory:                   ~275 MB
 
 ```
 
@@ -129,7 +129,7 @@ Successful transactions:       28233
 Failed transactions:            1081
 Longest transaction:            0.94
 Shortest transaction:           0.02
-Memory consumed:                 ~60 MB
+Total memory:                    ~85 MB
 
 [2.2] Vertx (Rhino)
 
@@ -145,7 +145,7 @@ Successful transactions:       28231
 Failed transactions:            1123
 Longest transaction:            0.64
 Shortest transaction:           0.02
-Memory consumed:                 ~70 MB
+Total memory:                   ~160 MB
 
 [2.3] Vertx (Nashorn)
 
@@ -161,7 +161,7 @@ Successful transactions:       28231
 Failed transactions:            1122
 Longest transaction:            0.81
 Shortest transaction:           0.02
-Memory consumed:                 ~90 MB
+Total memory:                   ~180 MB
 
 [2.4] Vertx (Java 8)
 
@@ -177,7 +177,7 @@ Successful transactions:       28131
 Failed transactions:            1123
 Longest transaction:            0.74
 Shortest transaction:           0.01
-Memory consumed:                 ~90 MB
+Total memory:                   ~165 MB
 ```
 
 * 2.x tests were aborted due to excessive socket failure
@@ -203,7 +203,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.17
 Shortest transaction:           0.03
-Memory consumed:                 ~50 MB
+Total memory:                    ~75 MB
 
 [3.2] Vertx (Rhino)
 
@@ -219,7 +219,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            1.12
 Shortest transaction:           0.31
-Memory consumed:                ~550 MB
+Total memory:                   ~630 MB
 
 [3.3] Vertx (Nashorn)
 
@@ -235,7 +235,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.92
 Shortest transaction:           0.10
-Memory consumed:                ~350 MB
+Total memory:                   ~440 MB
 
 [3.4] Vertx (Java 8)
 
@@ -251,7 +251,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.31
 Shortest transaction:           0.07
-Memory consumed:                ~180 MB
+Memory consumed:                ~255 MB
 ```
 
 ### Fibonacci
@@ -275,7 +275,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            1.46
 Shortest transaction:           0.04
-Memory consumed:                 ~40 MB
+Total memory:                    ~65 MB
 
 [4.2] Vertx (Rhino)
 
@@ -291,7 +291,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            7.56
 Shortest transaction:           0.31
-Memory consumed:                ~600 MB
+Total memory:                   ~680 MB
 
 [4.3] Vertx (Nashorn)
 
@@ -307,7 +307,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            4.19
 Shortest transaction:           0.50
-Memory consumed:                ~640 MB
+Total memory:                   ~730 MB
 
 [4.4] Vertx (Java 8)
 
@@ -323,7 +323,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.50
 Shortest transaction:           0.02
-Memory consumed:                ~25 MB
+Memory consumed:                ~100 MB
 
 [4.5] Vertx 4 instances (Nashorn)
 
@@ -339,7 +339,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            3.13
 Shortest transaction:           0.16
-Memory consumed:                ~660 MB
+Memory consumed:                ~810 MB
 
 [4.6] Vertx 4 instances (Java 8)
 
@@ -355,7 +355,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.42
 Shortest transaction:           0.04
-Memory consumed:                ~80 MB
+Memory consumed:                ~180 MB
 ```
 
 Fun facts
