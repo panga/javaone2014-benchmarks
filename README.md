@@ -13,8 +13,11 @@ Testing environment
 * Operating System: Red Hat Enterprise Linux 6.5 (PV) 64-bit
 * Node.js v0.10.29 (2014-06-16)
 * vert.x 2.1.1 (2014-06-18)
-* JDK 8u5
+* JDK 8 SE (build 1.8.0_05-b13)
+* JDK 8 Embedded (build 1.8.0-b132, profile compact3, vm client, nashorn extension)
 * ulimit = unlimited
+* server = localhost
+* test client = localhost
 * default V8/JVM and Node.js/vert.x settings
 
 Fairness considerations
@@ -88,7 +91,7 @@ Longest transaction:            0.96
 Shortest transaction:           0.00
 Total memory:                   ~620 MB
 
-[1.4] Vertx (Java 8)
+[1.4] Vertx (JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -104,6 +107,37 @@ Longest transaction:            0.49
 Shortest transaction:           0.00
 Total memory:                   ~275 MB
 
+[1.5] Vertx (JDK 8 Embedded)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  61.30 secs
+Data transferred:             266.84 MB
+Response time:                  0.01 secs
+Transaction rate:             163.13 trans/sec
+Throughput:                     4.35 MB/sec
+Concurrency:                    1.83
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.39
+Shortest transaction:           0.00
+Memory consumed:                 ~80 MB
+
+[1.6] Vertx (Nashorn with JDK 8 Embedded)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  64.27 secs
+Data transferred:             267.78 MB
+Response time:                  0.04 secs
+Transaction rate:             155.59 trans/sec
+Throughput:                     4.17 MB/sec
+Concurrency:                    5.54
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.69
+Shortest transaction:           0.00
+Memory consumed:                ~100 MB
 ```
 
 * 1.x tests reached local MongoDB instance limits
@@ -163,7 +197,7 @@ Longest transaction:            0.81
 Shortest transaction:           0.02
 Total memory:                   ~180 MB
 
-[2.4] Vertx (Java 8)
+[2.4] Vertx (JDK 8 SE)
 
 Transactions:                  28131 hits
 Availability:                  96.16 %
@@ -178,6 +212,38 @@ Failed transactions:            1123
 Longest transaction:            0.74
 Shortest transaction:           0.01
 Total memory:                   ~165 MB
+
+[2.5] Vertx (JDK 8 Embedded)
+
+Transactions:                  28231 hits
+Availability:                  96.19 %
+Elapsed time:                  10.53 secs
+Data transferred:               0.51 MB
+Response time:                  0.04 secs
+Transaction rate:            2681.01 trans/sec
+Throughput:                     0.05 MB/sec
+Concurrency:                   95.22
+Successful transactions:       28231
+Failed transactions:            1119
+Longest transaction:            0.85
+Shortest transaction:           0.02
+Memory consumed:                 ~60 MB
+
+[2.6] Vertx (Nashorn with JDK 8 Embedded)
+
+Transactions:                  21487 hits
+Availability:                  95.03 %
+Elapsed time:                   9.04 secs
+Data transferred:               0.39 MB
+Response time:                  0.04 secs
+Transaction rate:            2376.88 trans/sec
+Throughput:                     0.04 MB/sec
+Concurrency:                   94.53
+Successful transactions:       21487
+Failed transactions:            1123
+Longest transaction:            0.86
+Shortest transaction:           0.00
+Memory consumed:                 ~65 MB
 ```
 
 * 2.x tests were aborted due to excessive socket failure
@@ -237,7 +303,7 @@ Longest transaction:            0.92
 Shortest transaction:           0.10
 Total memory:                   ~440 MB
 
-[3.4] Vertx (Java 8)
+[3.4] Vertx (JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -252,6 +318,38 @@ Failed transactions:               0
 Longest transaction:            0.31
 Shortest transaction:           0.07
 Total memory:                   ~255 MB
+
+[3.5] Vertx (JDK 8 Embedded)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  14.42 secs
+Data transferred:              95.49 MB
+Response time:                  0.14 secs
+Transaction rate:             693.48 trans/sec
+Throughput:                     6.62 MB/sec
+Concurrency:                   99.46
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.16
+Shortest transaction:           0.00
+Memory consumed:                 ~60 MB
+
+[3.6] Vertx (Nashorn with JDK 8 Embedded)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  42.58 secs
+Data transferred:              95.49 MB
+Response time:                  0.42 secs
+Transaction rate:             234.85 trans/sec
+Throughput:                     2.24 MB/sec
+Concurrency:                   99.46
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.47
+Shortest transaction:           0.02
+Memory consumed:                 ~80 MB
 ```
 
 ### Fibonacci
@@ -309,7 +407,7 @@ Longest transaction:            4.19
 Shortest transaction:           0.50
 Total memory:                   ~730 MB
 
-[4.4] Vertx (Java 8)
+[4.4] Vertx (JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -325,23 +423,39 @@ Longest transaction:            0.50
 Shortest transaction:           0.02
 Total memory:                   ~100 MB
 
-[4.5] Vertx 4 instances (Nashorn)
+[4.5] Vertx (JDK 8 Embedded)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
-Elapsed time:                  16.23 secs
+Elapsed time:                   5.02 secs
 Data transferred:               0.02 MB
-Response time:                  1.53 secs
-Transaction rate:              61.61 trans/sec
+Response time:                  0.48 secs
+Transaction rate:             199.20 trans/sec
 Throughput:                     0.00 MB/sec
-Concurrency:                   94.48
+Concurrency:                   95.01
 Successful transactions:        1000
 Failed transactions:               0
-Longest transaction:            3.13
-Shortest transaction:           0.16
-Total memory:                   ~810 MB
+Longest transaction:            0.52
+Shortest transaction:           0.01
+Memory consumed:                 ~55 MB
 
-[4.6] Vertx 4 instances (Java 8)
+[4.6] Vertx (Nashorn with JDK 8 Embedded)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                  34.24 secs
+Data transferred:               0.02 MB
+Response time:                  3.26 secs
+Transaction rate:              29.21 trans/sec
+Throughput:                     0.00 MB/sec
+Concurrency:                   95.13
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            4.03
+Shortest transaction:           0.33
+Memory consumed:                ~360 MB
+
+[4.7] Vertx 4 instances (JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -356,6 +470,22 @@ Failed transactions:               0
 Longest transaction:            0.42
 Shortest transaction:           0.04
 Total memory:                   ~180 MB
+
+[4.8] Vertx 4 instances (JDK 8 Embedded)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                   2.35 secs
+Data transferred:               0.02 MB
+Response time:                  0.22 secs
+Transaction rate:             425.53 trans/sec
+Throughput:                     0.01 MB/sec
+Concurrency:                   94.40
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            0.28
+Shortest transaction:           0.01
+Memory consumed:                 ~65 MB
 ```
 
 Fun facts
