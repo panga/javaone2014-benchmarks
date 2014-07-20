@@ -1,29 +1,25 @@
-Node.js vs vert.x
-=================
+Node.js vs vert.x vs Avatar.js
+==============================
 
-Simple and naive Node.js vs vert.x benchmark  
-Node.js server uses Restify framework and Mongoose ORM  
-Vert.x uses mongo-persistor module (Java)  
-The database is MongoDB  
+Simple and naive Node.js vs vert.x vs Avatar.js benchmark
+
+- Node.js app uses Restify framework and Mongoose ORM  
+- Vert.x app uses mongo-persistor module (Java)
+- The database is MongoDB
 
 Testing environment
 -------------------
 
 * Hardware: Amazon EC2 c3.xlarge Instance (4 CPU, 7.5GB RAM, 80GB SSD)
 * Operating System: Red Hat Enterprise Linux 6.5 (PV) 64-bit
-* Node.js v0.10.29 (2014-06-16)
+* Node.js 0.10.29 (2014-06-16)
 * vert.x 2.1.1 (2014-06-18)
-* JDK 8 SE (build 1.8.0_05-b13)
-* JDK 8 Embedded (build 1.8.0-b132, profile compact3, vm client, nashorn extension)
+* avatar-js 0.10.28-SNAPSHOT (2014-07-20)
+* JDK 8 SE (build 1.8.0_05-b13, x64)
+* JDK 8 Embedded (build 1.8.0-b132, x86, profile compact3, vm client, nashorn extension)
 * ulimit = unlimited
-* server = localhost
-* test client = localhost
-* default V8/JVM and Node.js/vert.x settings
-
-Fairness considerations
------------------------
-
-Restify adds it's own headers such as X-Response-Time, Content-MD5, X-Request-Id, Date and so on. To be fair I removed unnecessary calculations from Restify and added some of them to vert.x code so that both servers return the same set of headers and perform (more or less) the same calculations. I got rid of MD5 response hash because it took about 40ms to calculate it using JavaScript function (Restify uses OpenSSL for that).
+* server & client = localhost (no networking)
+* default V8/JVM/MongoDB/Node.js/vert.x/avatar.js settings
 
 Benchmark results
 -----------------
@@ -121,7 +117,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.39
 Shortest transaction:           0.00
-Memory consumed:                 ~80 MB
+Total memory:                    ~80 MB
 
 [1.6] Vertx (Nashorn with JDK 8 Embedded)
 
@@ -137,10 +133,26 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.69
 Shortest transaction:           0.00
-Memory consumed:                ~100 MB
+Total memory:                   ~100 MB
+
+[1.7] Avatar.js (JDK 8 SE)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                 186.46 secs
+Data transferred:             268.95 MB
+Response time:                  1.30 secs
+Transaction rate:              53.63 trans/sec
+Throughput:                     1.44 MB/sec
+Concurrency:                   69.86
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            2.14
+Shortest transaction:           0.01
+Total memory:                  ~1600 MB
 ```
 
-* 1.x tests reached local MongoDB instance limits
+* Most of 1.x tests reached local MongoDB instance limits
 
 ### Returning a simple JSON response
 
@@ -227,7 +239,7 @@ Successful transactions:       28231
 Failed transactions:            1119
 Longest transaction:            0.85
 Shortest transaction:           0.02
-Memory consumed:                 ~60 MB
+Total memory:                    ~60 MB
 
 [2.6] Vertx (Nashorn with JDK 8 Embedded)
 
@@ -243,10 +255,26 @@ Successful transactions:       21487
 Failed transactions:            1123
 Longest transaction:            0.86
 Shortest transaction:           0.00
-Memory consumed:                 ~65 MB
+Total memory:                    ~65 MB
+
+[2.7] Avatar.js (JDK 8 SE)
+
+Transactions:                  15635 hits
+Availability:                  93.66 %
+Elapsed time:                  15.59 secs
+Data transferred:               0.28 MB
+Response time:                  0.10 secs
+Transaction rate:            1002.89 trans/sec
+Throughput:                     0.02 MB/sec
+Concurrency:                   98.91
+Successful transactions:       15635
+Failed transactions:            1059
+Longest transaction:            0.76
+Shortest transaction:           0.01
+Total memory:                   ~500 MB
 ```
 
-* 2.x tests were aborted due to excessive socket failure
+* All 2.x tests were aborted due to excessive socket failure
 
 ### String concatenation
 
@@ -333,7 +361,7 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.16
 Shortest transaction:           0.00
-Memory consumed:                 ~60 MB
+Total memory:                    ~60 MB
 
 [3.6] Vertx (Nashorn with JDK 8 Embedded)
 
@@ -349,7 +377,23 @@ Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            0.47
 Shortest transaction:           0.02
-Memory consumed:                 ~80 MB
+Total memory:                    ~80 MB
+
+[3.7] Avatar.js (JDK 8 SE)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  18.93 secs
+Data transferred:              95.49 MB
+Response time:                  0.19 secs
+Transaction rate:             528.26 trans/sec
+Throughput:                     5.04 MB/sec
+Concurrency:                   99.55
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.21
+Shortest transaction:           0.01
+Total memory:                   ~680 MB
 ```
 
 ### Fibonacci
@@ -395,16 +439,16 @@ Total memory:                   ~680 MB
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
-Elapsed time:                  33.37 secs
+Elapsed time:                  30.40 secs
 Data transferred:               0.02 MB
-Response time:                  3.18 secs
-Transaction rate:              29.97 trans/sec
+Response time:                  2.89 secs
+Transaction rate:              32.89 trans/sec
 Throughput:                     0.00 MB/sec
-Concurrency:                   95.27
+Concurrency:                   95.10
 Successful transactions:        1000
 Failed transactions:               0
-Longest transaction:            4.19
-Shortest transaction:           0.50
+Longest transaction:            3.11
+Shortest transaction:           0.05
 Total memory:                   ~730 MB
 
 [4.4] Vertx (JDK 8 SE)
@@ -437,7 +481,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.52
 Shortest transaction:           0.01
-Memory consumed:                 ~55 MB
+Total memory:                    ~55 MB
 
 [4.6] Vertx (Nashorn with JDK 8 Embedded)
 
@@ -453,7 +497,7 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            4.03
 Shortest transaction:           0.33
-Memory consumed:                ~360 MB
+Total memory:                   ~360 MB
 
 [4.7] Vertx 4 instances (JDK 8 SE)
 
@@ -485,11 +529,27 @@ Successful transactions:        1000
 Failed transactions:               0
 Longest transaction:            0.28
 Shortest transaction:           0.01
-Memory consumed:                 ~65 MB
+Total memory:	                 ~65 MB
+
+[4.9] Avatar.js (JDK 8 SE)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                  41.09 secs
+Data transferred:               0.02 MB
+Response time:                  3.91 secs
+Transaction rate:              24.34 trans/sec
+Throughput:                     0.00 MB/sec
+Concurrency:                   95.12
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            4.31
+Shortest transaction:           0.07
+Total memory:	                ~900 MB
 ```
 
 Fun facts
 ---------
 
-* Naming your vert.x application file 'vertx.js' is a bad idea.
 * Naming your Node.js application file 'node.js' on Windows is a bad idea.
+* Naming your vert.x application file 'vertx.js' on Windows is a bad idea.
