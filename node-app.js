@@ -113,4 +113,4 @@ var randomString = function(_len) {
 var fibonacci = function(n) {
   if (n <= 1) return n;
   return fibonacci(n - 2) + fibonacci(n - 1);
-}
+};

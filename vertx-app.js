@@ -94,7 +94,7 @@ server.requestHandler(routeMatcher).listen(1337);
 //helper http headers function
 var addHeaders = function(response) {
   response.putHeader('Content-Type', 'application/json').putHeader('Date', new Date().toString()).putHeader('Connection', 'close');
-}
+};
 
 //helper function for random string generation
 var randomString = function(_len) {
@@ -116,4 +116,4 @@ var randomString = function(_len) {
 var fibonacci = function(n) {
   if (n <= 1) return n;
   return fibonacci(n - 2) + fibonacci(n - 1);
-}
+};
