@@ -1,25 +1,30 @@
-Node.js vs vert.x vs Avatar.js
-==============================
+JavaOne 2014 Benchmarks
+=======================
 
-Simple and naive Node.js vs vert.x vs Avatar.js benchmark
+Simple and naive Node.js, vert.x, avatar.js and Avatar benchmarks
 
-- Node.js app uses Restify framework and Mongoose ORM  
-- Vert.x app uses mongo-persistor module (Java)
+- Node.js app uses Restify framework and Mongoose module  
+- vert.x app uses mongo-persistor module (Java)
+- avatar.js was tested with Node.js app
+- Avatar app uses Mongoose module
 - The database is MongoDB
 
 Testing environment
 -------------------
 
-* Hardware: Amazon EC2 c3.xlarge Instance (4 CPU, 7.5GB RAM, 80GB SSD)
-* Operating System: Red Hat Enterprise Linux 6.5 (PV) 64-bit
+* Amazon EC2 c3.xlarge Instance (4 CPU, 7.5GB RAM, 80GB SSD)
+* Red Hat Enterprise Linux 6.5 (PV) 64-bit
+* MongoDB 2.6.3
 * Node.js 0.10.29 (2014-06-16)
 * vert.x 2.1.1 (2014-06-18)
 * avatar-js 0.10.28-SNAPSHOT (2014-07-20)
+* Avatar 1.0-ea-SNAPSHOT (2014-07-26)
+* GlassFish 4.0.1-b09 (2014-07-23)
 * JDK 8 SE (build 1.8.0_05-b13, x64)
 * JDK 8 Embedded (build 1.8.0-b132, x86, profile compact3, vm client, nashorn extension)
 * ulimit = unlimited
-* server & client = localhost (no networking)
-* default V8/JVM/MongoDB/Node.js/vert.x/avatar.js settings
+* server and client in localhost (no networking)
+* all applications and frameworks with default settings
 
 Benchmark results
 -----------------
@@ -55,23 +60,7 @@ Longest transaction:            0.41
 Shortest transaction:           0.00
 Total memory:                    ~75 MB
 
-[1.2] Vertx (Rhino)
-
-Transactions:                  10000 hits
-Availability:                 100.00 %
-Elapsed time:                  64.25 secs
-Data transferred:             267.78 MB
-Response time:                  0.02 secs
-Transaction rate:             155.64 trans/sec
-Throughput:                     4.17 MB/sec
-Concurrency:                    3.06
-Successful transactions:       10000
-Failed transactions:               0
-Longest transaction:            0.77
-Shortest transaction:           0.00
-Total memory:                   ~580 MB
-
-[1.3] Vertx (Nashorn)
+[1.2] Vertx (Nashorn with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -87,7 +76,7 @@ Longest transaction:            0.96
 Shortest transaction:           0.00
 Total memory:                   ~620 MB
 
-[1.4] Vertx (JDK 8 SE)
+[1.3] Vertx (Java with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -103,7 +92,7 @@ Longest transaction:            0.49
 Shortest transaction:           0.00
 Total memory:                   ~275 MB
 
-[1.5] Vertx (JDK 8 Embedded)
+[1.4] Vertx (Java with JDK 8 Embedded)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -119,7 +108,7 @@ Longest transaction:            0.39
 Shortest transaction:           0.00
 Total memory:                    ~80 MB
 
-[1.6] Vertx (Nashorn with JDK 8 Embedded)
+[1.5] Vertx (Nashorn with JDK 8 Embedded)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -135,7 +124,7 @@ Longest transaction:            0.69
 Shortest transaction:           0.00
 Total memory:                   ~100 MB
 
-[1.7] Avatar.js (JDK 8 SE)
+[1.6] Avatar.js (Nashorn with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -148,6 +137,22 @@ Concurrency:                   69.86
 Successful transactions:       10000
 Failed transactions:               0
 Longest transaction:            2.14
+Shortest transaction:           0.01
+Total memory:                  ~1500 MB
+
+[1.7] Avatar (Nashorn on Glassfish 4 with JDK 8 SE)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                 197.32 secs
+Data transferred:             268.95 MB
+Response time:                  1.43 secs
+Transaction rate:              50.68 trans/sec
+Throughput:                     1.36 MB/sec
+Concurrency:                   72.24
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            2.20
 Shortest transaction:           0.01
 Total memory:                  ~1600 MB
 ```
@@ -163,118 +168,116 @@ Benchmarking command: **siege -c100 -b -r1000 http://localhost:1337/hello**
 ```
 [2.1] Node.js
 
-Transactions:                  28233 hits
-Availability:                  96.31 %
-Elapsed time:                  18.70 secs
-Data transferred:               0.51 MB
-Response time:                  0.07 secs
-Transaction rate:            1509.79 trans/sec
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  61.04 secs
+Data transferred:               1.81 MB
+Response time:                  0.06 secs
+Transaction rate:            1638.27 trans/sec
 Throughput:                     0.03 MB/sec
-Concurrency:                   98.28
-Successful transactions:       28233
-Failed transactions:            1081
-Longest transaction:            0.94
+Concurrency:                   99.91
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.11
 Shortest transaction:           0.02
-Total memory:                    ~85 MB
+Total memory:                    ~70 MB
 
-[2.2] Vertx (Rhino)
+[2.2] Vertx (Nashorn with JDK 8 SE)
 
-Transactions:                  28231 hits
-Availability:                  96.17 %
-Elapsed time:                  13.01 secs
-Data transferred:               0.51 MB
-Response time:                  0.04 secs
-Transaction rate:            2169.95 trans/sec
-Throughput:                     0.04 MB/sec
-Concurrency:                   96.17
-Successful transactions:       28231
-Failed transactions:            1123
-Longest transaction:            0.64
-Shortest transaction:           0.02
-Total memory:                   ~160 MB
-
-[2.3] Vertx (Nashorn)
-
-Transactions:                  28231 hits
-Availability:                  96.18 %
-Elapsed time:                  11.26 secs
-Data transferred:               0.51 MB
-Response time:                  0.04 secs
-Transaction rate:            2507.19 trans/sec
-Throughput:                     0.05 MB/sec
-Concurrency:                   96.16
-Successful transactions:       28231
-Failed transactions:            1122
-Longest transaction:            0.81
-Shortest transaction:           0.02
-Total memory:                   ~180 MB
-
-[2.4] Vertx (JDK 8 SE)
-
-Transactions:                  28131 hits
-Availability:                  96.16 %
-Elapsed time:                   9.77 secs
-Data transferred:               0.51 MB
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  29.83 secs
+Data transferred:               1.81 MB
 Response time:                  0.03 secs
-Transaction rate:            2879.32 trans/sec
-Throughput:                     0.05 MB/sec
-Concurrency:                   94.38
-Successful transactions:       28131
-Failed transactions:            1123
-Longest transaction:            0.74
-Shortest transaction:           0.01
-Total memory:                   ~165 MB
+Transaction rate:            3352.33 trans/sec
+Throughput:                     0.06 MB/sec
+Concurrency:                   99.83
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.06
+Shortest transaction:           0.00
+Total memory:                   ~200 MB
 
-[2.5] Vertx (JDK 8 Embedded)
+[2.3] Vertx (Java with JDK 8 SE)
 
-Transactions:                  28231 hits
-Availability:                  96.19 %
-Elapsed time:                  10.53 secs
-Data transferred:               0.51 MB
-Response time:                  0.04 secs
-Transaction rate:            2681.01 trans/sec
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  27.05 secs
+Data transferred:               1.81 MB
+Response time:                  0.03 secs
+Transaction rate:            3696.86 trans/sec
+Throughput:                     0.07 MB/sec
+Concurrency:                   99.83
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.05
+Shortest transaction:           0.00
+Total memory:                   ~120 MB
+
+[2.4] Vertx (Java with JDK 8 Embedded)
+
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  33.83 secs
+Data transferred:               1.81 MB
+Response time:                  0.03 secs
+Transaction rate:            2955.96 trans/sec
 Throughput:                     0.05 MB/sec
-Concurrency:                   95.22
-Successful transactions:       28231
-Failed transactions:            1119
-Longest transaction:            0.85
-Shortest transaction:           0.02
+Concurrency:                   99.82
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.06
+Shortest transaction:           0.00
 Total memory:                    ~60 MB
 
-[2.6] Vertx (Nashorn with JDK 8 Embedded)
+[2.5] Vertx (Nashorn with JDK 8 Embedded)
 
-Transactions:                  21487 hits
-Availability:                  95.03 %
-Elapsed time:                   9.04 secs
-Data transferred:               0.39 MB
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  39.92 secs
+Data transferred:               1.81 MB
 Response time:                  0.04 secs
-Transaction rate:            2376.88 trans/sec
-Throughput:                     0.04 MB/sec
-Concurrency:                   94.53
-Successful transactions:       21487
-Failed transactions:            1123
-Longest transaction:            0.86
+Transaction rate:            2505.01 trans/sec
+Throughput:                     0.05 MB/sec
+Concurrency:                   99.85
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.07
 Shortest transaction:           0.00
-Total memory:                    ~65 MB
+Total memory:                    ~80 MB
 
-[2.7] Avatar.js (JDK 8 SE)
+[2.6] Avatar.js (Nashorn with JDK 8 SE)
 
-Transactions:                  15635 hits
-Availability:                  93.66 %
-Elapsed time:                  15.59 secs
-Data transferred:               0.28 MB
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  95.52 secs
+Data transferred:               1.81 MB
 Response time:                  0.10 secs
-Transaction rate:            1002.89 trans/sec
+Transaction rate:            1046.90 trans/sec
 Throughput:                     0.02 MB/sec
-Concurrency:                   98.91
-Successful transactions:       15635
-Failed transactions:            1059
-Longest transaction:            0.76
+Concurrency:                   99.94
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.16
 Shortest transaction:           0.01
-Total memory:                   ~500 MB
-```
+Total memory:                   ~900 MB
 
-* All 2.x tests were aborted due to excessive socket failure
+[2.7] Avatar (Nashorn on Glassfish 4 with JDK 8 SE)
+
+Transactions:                 100000 hits
+Availability:                 100.00 %
+Elapsed time:                  41.49 secs
+Data transferred:               1.81 MB
+Response time:                  0.04 secs
+Transaction rate:            2410.22 trans/sec
+Throughput:                     0.04 MB/sec
+Concurrency:                   99.83
+Successful transactions:      100000
+Failed transactions:               0
+Longest transaction:            0.98
+Shortest transaction:           0.00
+Total memory:                   ~600 MB
+```
 
 ### String concatenation
 
@@ -299,23 +302,7 @@ Longest transaction:            0.17
 Shortest transaction:           0.03
 Total memory:                    ~75 MB
 
-[3.2] Vertx (Rhino)
-
-Transactions:                  10000 hits
-Availability:                 100.00 %
-Elapsed time:                  52.43 secs
-Data transferred:              95.49 MB
-Response time:                  0.52 secs
-Transaction rate:             190.73 trans/sec
-Throughput:                     1.82 MB/sec
-Concurrency:                   99.50
-Successful transactions:       10000
-Failed transactions:               0
-Longest transaction:            1.12
-Shortest transaction:           0.31
-Total memory:                   ~630 MB
-
-[3.3] Vertx (Nashorn)
+[3.2] Vertx (Nashorn with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -331,7 +318,7 @@ Longest transaction:            0.92
 Shortest transaction:           0.10
 Total memory:                   ~440 MB
 
-[3.4] Vertx (JDK 8 SE)
+[3.3] Vertx (Java with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -347,7 +334,7 @@ Longest transaction:            0.31
 Shortest transaction:           0.07
 Total memory:                   ~255 MB
 
-[3.5] Vertx (JDK 8 Embedded)
+[3.4] Vertx (Java with JDK 8 Embedded)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -363,7 +350,7 @@ Longest transaction:            0.16
 Shortest transaction:           0.00
 Total memory:                    ~60 MB
 
-[3.6] Vertx (Nashorn with JDK 8 Embedded)
+[3.5] Vertx (Nashorn with JDK 8 Embedded)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -379,7 +366,7 @@ Longest transaction:            0.47
 Shortest transaction:           0.02
 Total memory:                    ~80 MB
 
-[3.7] Avatar.js (JDK 8 SE)
+[3.6] Avatar.js (Nashorn with JDK 8 SE)
 
 Transactions:                  10000 hits
 Availability:                 100.00 %
@@ -394,6 +381,38 @@ Failed transactions:               0
 Longest transaction:            0.21
 Shortest transaction:           0.01
 Total memory:                   ~680 MB
+
+[3.7] Avatar (Nashorn on Glassfish 4 with JDK 8 SE)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  13.30 secs
+Data transferred:              95.49 MB
+Response time:                  0.13 secs
+Transaction rate:             751.88 trans/sec
+Throughput:                     7.18 MB/sec
+Concurrency:                   99.52
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.57
+Shortest transaction:           0.01
+Total memory:                   ~580 MB
+
+[3.8] Vertx 4 instances (Nashorn with JDK 8 SE)
+
+Transactions:                  10000 hits
+Availability:                 100.00 %
+Elapsed time:                  10.28 secs
+Data transferred:              95.49 MB
+Response time:                  0.10 secs
+Transaction rate:             972.76 trans/sec
+Throughput:                     9.29 MB/sec
+Concurrency:                   96.96
+Successful transactions:       10000
+Failed transactions:               0
+Longest transaction:            0.26
+Shortest transaction:           0.00
+Total memory:                   ~450 MB
 ```
 
 ### Fibonacci
@@ -419,23 +438,7 @@ Longest transaction:            1.46
 Shortest transaction:           0.04
 Total memory:                    ~65 MB
 
-[4.2] Vertx (Rhino)
-
-Transactions:                   1000 hits
-Availability:                 100.00 %
-Elapsed time:                  66.33 secs
-Data transferred:               0.02 MB
-Response time:                  6.31 secs
-Transaction rate:              15.08 trans/sec
-Throughput:                     0.00 MB/sec
-Concurrency:                   95.15
-Successful transactions:        1000
-Failed transactions:               0
-Longest transaction:            7.56
-Shortest transaction:           0.31
-Total memory:                   ~680 MB
-
-[4.3] Vertx (Nashorn)
+[4.2] Vertx (Nashorn with JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -451,7 +454,7 @@ Longest transaction:            3.11
 Shortest transaction:           0.05
 Total memory:                   ~730 MB
 
-[4.4] Vertx (JDK 8 SE)
+[4.3] Vertx (Java with JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -467,7 +470,7 @@ Longest transaction:            0.50
 Shortest transaction:           0.02
 Total memory:                   ~100 MB
 
-[4.5] Vertx (JDK 8 Embedded)
+[4.4] Vertx (Java with JDK 8 Embedded)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -483,7 +486,7 @@ Longest transaction:            0.52
 Shortest transaction:           0.01
 Total memory:                    ~55 MB
 
-[4.6] Vertx (Nashorn with JDK 8 Embedded)
+[4.5] Vertx (Nashorn with JDK 8 Embedded)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -499,7 +502,7 @@ Longest transaction:            4.03
 Shortest transaction:           0.33
 Total memory:                   ~360 MB
 
-[4.7] Vertx 4 instances (JDK 8 SE)
+[4.6] Vertx 4 instances (Java with JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -515,7 +518,7 @@ Longest transaction:            0.42
 Shortest transaction:           0.04
 Total memory:                   ~180 MB
 
-[4.8] Vertx 4 instances (JDK 8 Embedded)
+[4.7] Vertx 4 instances (Java with JDK 8 Embedded)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -531,7 +534,7 @@ Longest transaction:            0.28
 Shortest transaction:           0.01
 Total memory:	                 ~65 MB
 
-[4.9] Avatar.js (JDK 8 SE)
+[4.8] Avatar.js (Nashorn with JDK 8 SE)
 
 Transactions:                   1000 hits
 Availability:                 100.00 %
@@ -546,6 +549,22 @@ Failed transactions:               0
 Longest transaction:            4.31
 Shortest transaction:           0.07
 Total memory:	                ~900 MB
+
+[4.9] Avatar (Nashorn on Glassfish 4 with JDK 8 SE)
+
+Transactions:                   1000 hits
+Availability:                 100.00 %
+Elapsed time:                  32.64 secs
+Data transferred:               0.02 MB
+Response time:                  3.11 secs
+Transaction rate:              30.64 trans/sec
+Throughput:                     0.00 MB/sec
+Concurrency:                   95.17
+Successful transactions:        1000
+Failed transactions:               0
+Longest transaction:            3.51
+Shortest transaction:           0.04
+Total memory:                   ~520 MB
 ```
 
 Fun facts
@@ -553,3 +572,4 @@ Fun facts
 
 * Naming your Node.js application file 'node.js' on Windows is a bad idea.
 * Naming your vert.x application file 'vertx.js' on Windows is a bad idea.
+* Avatar app need use global node_modules.
